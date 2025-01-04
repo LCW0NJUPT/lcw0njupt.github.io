@@ -1,0 +1,378 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+<meta name=ProgId content=OneNote.File>
+<meta name=Generator content="Microsoft OneNote 15">
+<link id=Main-File rel=Main-File href=zluda安装和使用教程.htm>
+<link rel=File-List href="zluda安装和使用教程.files/filelist.xml">
+</head>
+
+<body lang=zh-CN style='font-family:"Segoe UI";font-size:14.0pt'>
+
+<div style='direction:ltr;border-width:100%'>
+
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:11.1312in'>
+
+<div style='direction:ltr;margin-top:0in;margin-left:.0215in;width:3.152in'>
+
+<p style='margin:0in;font-size:20.0pt'><span style='font-family:"Segoe UI"'
+lang=en-US>zluda</span><span style='font-family:"Microsoft YaHei"' lang=zh-CN>安装和使用教程</span></p>
+
+</div>
+
+<div style='direction:ltr;margin-top:.0388in;margin-left:.0215in;width:1.6326in'>
+
+<p style='margin:0in;font-size:10.0pt;color:#767676'><span style='font-family:
+Calibri'>2025</span><span style='font-family:"Microsoft YaHei"'>年</span><span
+style='font-family:Calibri'>1</span><span style='font-family:"Microsoft YaHei"'>月</span><span
+style='font-family:Calibri'>4</span><span style='font-family:"Microsoft YaHei"'>日</span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:10.0pt;color:#767676'>17:49</p>
+
+</div>
+
+<div style='direction:ltr;margin-top:.4743in;margin-left:0in;width:11.1312in'>
+
+<p style='margin:0in;font-family:"Segoe UI";font-size:14.0pt'>&nbsp;</p>
+
+<h1 style='margin:0in;font-size:22.0pt;color:#1E4E79'><span style='font-family:
+Calibri' lang=zh-CN>Windows</span><span style='font-family:Calibri' lang=en-US>11</span><span
+style='font-family:"Microsoft YaHei"' lang=zh-CN>下通过</span><span
+style='font-family:Calibri' lang=zh-CN>HIP SDK</span><span style='font-family:
+"Microsoft YaHei"' lang=zh-CN>和</span><span style='font-family:Calibri'
+lang=zh-CN>Zluda</span><span style='font-family:"Microsoft YaHei"' lang=zh-CN>运行</span><span
+style='font-family:Calibri' lang=zh-CN>pytorch</span></h1>
+
+<p style='margin:0in;font-family:"Segoe UI";font-size:14.0pt'>&nbsp;</p>
+
+<h2 style='margin:0in;font-family:微软雅黑;font-size:18.0pt;color:#2E75B5'><span
+lang=en-US>1</span><span lang=zh-CN>、下载Zluda和</span><span lang=en-US>HIP</span></h2>
+
+<p style='margin:0in;font-family:"Segoe UI";font-size:14.0pt'><a
+href="https://github.com/lshqqytiger/ZLUDA/">https://github.com/lshqqytiger/ZLUDA/</a></p>
+
+<p style='margin:0in;font-family:"Microsoft YaHei";font-size:14.0pt'><span
+lang=zh-CN>根据兼容性要求下载</span><span lang=en-US>AMD HIP SDK 6.2</span><span
+lang=zh-CN>版本</span></p>
+
+<p style='margin:0in;font-family:"Microsoft YaHei";font-size:14.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:"Microsoft YaHei";font-size:14.0pt'>AMD官网下载HIP
+SDK for Windows(llama.cpp直接依靠HIP SDK，即使你不打算安装Zluda你也应该安装HIP SDK，而Zluda同样依靠HIP
+SDK运行，所以这应该是必装的)：</p>
+
+<p style='margin:0in;font-family:"Segoe UI";font-size:14.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:"Microsoft YaHei";font-size:14.0pt'><a
+href="https://www.amd.com/en/developer/resources/rocm-hub/hip-sdk.html">https://www.amd.com/en/developer/resources/rocm-hub/hip-sdk.html</a>
+</p>
+
+<p style='margin:0in;font-family:"Microsoft YaHei";font-size:14.0pt'>&nbsp;</p>
+
+<p style='margin:0in'><img src="zluda安装和使用教程.files/image001.png" width=1056
+height=454></p>
+
+<p style='margin:0in;font-family:"Segoe UI";font-size:14.0pt'>&nbsp;</p>
+
+<h2 style='margin:0in;font-family:微软雅黑;font-size:18.0pt;color:#2E75B5'><span
+lang=en-US>2</span><span lang=zh-CN>、编辑系统环境变量</span></h2>
+
+<p style='margin:0in;font-family:"Microsoft YaHei";font-size:14.0pt'><span
+lang=zh-CN>装完</span><span lang=en-US>HIP</span><span lang=zh-CN>会自动添加</span></p>
+
+<p style='margin:0in'><img src="zluda安装和使用教程.files/image002.png" width=531
+height=559></p>
+
+<p style='margin:0in;font-family:"Segoe UI";font-size:14.0pt' lang=en-US><span
+style='mso-spacerun:yes'> </span></p>
+
+<p style='margin:0in;font-size:14.0pt'><span style='font-family:"Microsoft YaHei"'
+lang=en-US>Path</span><span style='font-family:"Microsoft YaHei"' lang=zh-CN>中添加</span><span
+style='font-family:"Microsoft YaHei"' lang=en-US>zluda</span><span
+style='font-family:"Microsoft YaHei"' lang=zh-CN>等路径，以及</span><span
+style='font-family:"Segoe UI"' lang=zh-CN>%HIP_PATH%\bin</span></p>
+
+<p style='margin:0in'><img src="zluda安装和使用教程.files/image003.png" width=540
+height=570></p>
+
+<p style='margin:0in;font-family:"Segoe UI";font-size:14.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:"Segoe UI";font-size:14.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:"Segoe UI";font-size:14.0pt'>&nbsp;</p>
+
+<h2 style='margin:0in;font-size:18.0pt;color:#2E75B5'><span style='font-family:
+"Segoe UI"' lang=en-US>3</span><span style='font-family:微软雅黑' lang=zh-CN>、检查</span><span
+style='font-family:微软雅黑' lang=en-US>GPU</span><span style='font-family:微软雅黑'
+lang=zh-CN>的</span><span style='font-family:微软雅黑' lang=en-US>ROCM</span><span
+style='font-family:微软雅黑' lang=zh-CN>支持</span></h2>
+
+<p style='margin:0in;font-family:"Segoe UI";font-size:14.0pt'><a
+href="https://rocm.docs.amd.com/projects/install-on-windows/en/develop/reference/system-requirements.html">https://rocm.docs.amd.com/projects/install-on-windows/en/develop/reference/system-requirements.html</a></p>
+
+<p style='margin:0in;font-size:14.0pt'><span style='font-family:"Microsoft YaHei"'
+lang=zh-CN>我的显卡是</span><span style='font-family:"Segoe UI"' lang=en-US>6800</span><span
+style='font-family:"Microsoft YaHei"' lang=en-US>XT</span><span
+style='font-family:"Microsoft YaHei"' lang=zh-CN>，是正式支持的，因此可以跳到下一步</span></p>
+
+<p style='margin:0in'><img src="zluda安装和使用教程.files/image004.jpg" width=518
+height=755></p>
+
+<p style='margin:0in;font-family:"Microsoft YaHei";font-size:14.0pt'>如果不在正式支持列表中，则请进入https://github.com/brknsoul/ROCmLibs
+项目中下载对应的ROCmLibs.7z，解压后复制到%HIP_PATH%\bin\rocblas\中</p>
+
+<p style='margin:0in'><img src="zluda安装和使用教程.files/image005.png" width=731
+height=516></p>
+
+<p style='margin:0in;font-family:"Segoe UI";font-size:14.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:"Segoe UI";font-size:14.0pt'>&nbsp;</p>
+
+<h2 style='margin:0in;font-size:18.0pt;color:#2E75B5'><span style='font-family:
+"Segoe UI"' lang=en-US>4</span><span style='font-family:微软雅黑' lang=zh-CN>、</span><span
+style='font-family:微软雅黑' lang=en-US>Anaconda</span><span style='font-family:
+微软雅黑' lang=zh-CN>创建虚拟化环境</span></h2>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:14.0pt;color:#E84C22'><span
+lang=zh-CN>这里一定要注意，</span><span lang=en-US>python</span><span lang=zh-CN>版本、</span><span
+lang=en-US>cuda</span><span lang=zh-CN>版本、</span><span lang=en-US>pytorch</span><span
+lang=zh-CN>版本都需要一一对应</span></p>
+
+<p style='margin:0in;font-size:14.0pt'><span style='font-family:微软雅黑'
+lang=zh-CN>由于目前</span><span style='font-family:微软雅黑' lang=en-US>zluda</span><span
+style='font-family:微软雅黑' lang=zh-CN>的难绷兼容性，我选择</span><span style='font-family:
+微软雅黑' lang=en-US>python3.10+cuda11.8+pytorch2.3.1</span><span style='font-family:
+微软雅黑' lang=zh-CN>（很难想象这是</span><span style='font-family:Calibri' lang=en-US>2025</span><span
+style='font-family:"Microsoft YaHei"' lang=zh-CN>新提交的代码</span><span
+style='font-family:微软雅黑' lang=zh-CN>）</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:14.0pt' lang=en-US>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:14.0pt'>conda create -n
+torch_zluda python=3.10</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:14.0pt'>conda activate
+torch_zluda</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:14.0pt'>pip install
+torch==2.3.1+cu118 torchvision==0.18.1+cu118 torchaudio==2.3.1+cu118 -f <a
+href="https://mirrors.aliyun.com/pytorch-wheels/torch_stable.html">https://mirrors.aliyun.com/pytorch-wheels/torch_stable.html</a></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:14.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:14.0pt'>conda info
+--envs查看环境位置，并进入这个位置</p>
+
+<p style='margin:0in'><img src="zluda安装和使用教程.files/image006.png" width=639
+height=153></p>
+
+<p style='margin:0in;font-family:"Microsoft YaHei";font-size:14.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:"Microsoft YaHei";font-size:14.0pt'><span
+lang=zh-CN>再进入.\Lib\site-packages\torch\lib，将cublas64_11.dll和cusparse64_11.dll分别重命名为cublas64_11.dll.bak和cusparse64_11.dll.bak，使用</span><span
+lang=en-US>Zluda</span><span lang=zh-CN>文件夹中的替换</span></p>
+
+<p style='margin:0in;font-family:"Microsoft YaHei";font-size:14.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-size:14.0pt'><span style='font-family:"Microsoft YaHei"'
+lang=zh-CN>其他的</span><span style='font-family:"Segoe UI"' lang=en-US>d</span><span
+style='font-family:"Microsoft YaHei"' lang=en-US>ll</span><span
+style='font-family:"Microsoft YaHei"' lang=zh-CN>我也进行了部分替换，后续会进行测试，如有</span><span
+style='font-family:"Microsoft YaHei"' lang=en-US>bug</span><span
+style='font-family:"Microsoft YaHei"' lang=zh-CN>在以下反馈：</span></p>
+
+<p style='margin:0in;font-family:"Microsoft YaHei";font-size:14.0pt'>&nbsp;</p>
+
+<p style='margin:0in'><img src="zluda安装和使用教程.files/image007.png" width=974
+height=666></p>
+
+<p style='margin:0in;font-family:"Segoe UI";font-size:14.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:"Segoe UI";font-size:14.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:"Segoe UI";font-size:14.0pt'>&nbsp;</p>
+
+<h2 style='margin:0in;font-size:18.0pt;color:#2E75B5'><span style='font-family:
+"Segoe UI"' lang=en-US>5</span><span style='font-family:微软雅黑' lang=zh-CN>、效果验证与测试</span></h2>
+
+<p style='margin:0in;font-size:14.0pt'><span style='font-family:"Microsoft YaHei"'>进入</span><span
+style='font-family:"Segoe UI"'>torch_zluda</span><span style='font-family:"Microsoft YaHei"'>终端</span></p>
+
+<p style='margin:0in;font-family:"Segoe UI";font-size:14.0pt'>python</p>
+
+<p style='margin:0in;font-family:"Segoe UI";font-size:14.0pt'>import torch</p>
+
+<p style='margin:0in;font-family:"Segoe UI";font-size:14.0pt'>torch.cuda.is_available()</p>
+
+<p style='margin:0in'><img src="zluda安装和使用教程.files/image008.png" width=1027
+height=177></p>
+
+<p style='margin:0in;font-size:14.0pt'><span style='font-family:"Microsoft YaHei"'>正常情况下应该输出为</span><span
+style='font-family:"Segoe UI"'>True</span><span style='font-family:"Microsoft YaHei"'>，说明已经可以通过</span><span
+style='font-family:"Segoe UI"'>Zluda</span><span style='font-family:"Microsoft YaHei"'>调用你的</span><span
+style='font-family:"Segoe UI"'>AMD GPU</span><span style='font-family:"Microsoft YaHei"'>进行计算</span></p>
+
+<p style='margin:0in;font-size:14.0pt'><span style='font-family:"Microsoft YaHei"'
+lang=zh-CN>继续用</span><span style='font-family:"Segoe UI"' lang=en-US>vscode</span><span
+style='font-family:"Microsoft YaHei"' lang=zh-CN>测试显存读取：</span></p>
+
+<p style='margin:0in;line-height:14pt;font-family:"Segoe UI";font-size:14.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:Consolas;font-size:10.5pt'><span
+style='color:#C586C0'>import</span><span style='color:#979797'> torch</span></p>
+
+<p style='margin:0in;font-family:Consolas;font-size:10.5pt'><span
+style='color:#989875'>print</span><span style='color:#979797'>(</span><span
+style='color:#CB8F76'>&quot;CUDA version is: &quot;</span><span
+style='color:#979797'>+ torch.cuda_version)</span></p>
+
+<p style='margin:0in;font-size:10.5pt;color:#6A9955'><span style='font-family:
+Consolas'># </span><span style='font-family:"Microsoft YaHei"'>检查</span><span
+style='font-family:Consolas'>CUDA</span><span style='font-family:"Microsoft YaHei"'>是否可用</span></p>
+
+<p style='margin:0in;font-family:Consolas;font-size:10.5pt'><span
+style='color:#C586C0'>if</span><span style='color:#979797'>
+torch.cuda.is_available():</span></p>
+
+<p style='margin:0in;font-size:10.5pt'><span style='font-family:Consolas;
+color:#979797'>&nbsp; &nbsp; </span><span style='font-family:Consolas;
+color:#6A9955'># </span><span style='font-family:"Microsoft YaHei";color:#6A9955'>获取</span><span
+style='font-family:Consolas;color:#6A9955'>GPU</span><span style='font-family:
+"Microsoft YaHei";color:#6A9955'>的总显存大小（以字节为单位）</span></p>
+
+<p style='margin:0in;font-family:Consolas;font-size:10.5pt'><span
+style='color:#979797'>&nbsp; &nbsp; total_memory =
+torch.cuda.get_device_properties(</span><span style='color:#899C7F'>0</span><span
+style='color:#979797'>).total_memory</span></p>
+
+<p style='margin:0in;font-size:10.5pt'><span style='font-family:Consolas;
+color:#979797'>&nbsp; &nbsp; </span><span style='font-family:Consolas;
+color:#6A9955'># </span><span style='font-family:"Microsoft YaHei";color:#6A9955'>将字节转换为</span><span
+style='font-family:Consolas;color:#6A9955'>GB</span></p>
+
+<p style='margin:0in;font-family:Consolas;font-size:10.5pt'><span
+style='color:#979797'>&nbsp; &nbsp; total_memory_gb = total_memory / (</span><span
+style='color:#899C7F'>1024</span><span style='color:#979797'> ** </span><span
+style='color:#899C7F'>3</span><span style='color:#979797'>)</span></p>
+
+<p style='margin:0in;font-family:Consolas;font-size:10.5pt'><span
+style='color:#979797'>&nbsp; &nbsp; </span><span style='color:#989875'>print</span><span
+style='color:#979797'>(</span><span style='color:#569CD6'>f</span><span
+style='color:#CB8F76'>&quot;Total GPU memory: </span><span style='color:#569CD6'>{</span><span
+style='color:#979797'>total_memory_gb</span><span style='color:#569CD6'>:.2f}</span><span
+style='color:#CB8F76'> GB&quot;</span><span style='color:#979797'>)</span></p>
+
+<p style='margin:0in;font-size:10.5pt'><span style='font-family:Consolas;
+color:#979797'>&nbsp; &nbsp; </span><span style='font-family:Consolas;
+color:#6A9955'># </span><span style='font-family:"Microsoft YaHei";color:#6A9955'>获取当前</span><span
+style='font-family:Consolas;color:#6A9955'>GPU</span><span style='font-family:
+"Microsoft YaHei";color:#6A9955'>的已分配显存大小（以字节为单位）</span></p>
+
+<p style='margin:0in;font-family:Consolas;font-size:10.5pt'><span
+style='color:#979797'>&nbsp; &nbsp; allocated_memory =
+torch.cuda.memory_allocated(</span><span style='color:#899C7F'>0</span><span
+style='color:#979797'>)</span></p>
+
+<p style='margin:0in;font-size:10.5pt'><span style='font-family:Consolas;
+color:#979797'>&nbsp; &nbsp; </span><span style='font-family:Consolas;
+color:#6A9955'># </span><span style='font-family:"Microsoft YaHei";color:#6A9955'>将字节转换为</span><span
+style='font-family:Consolas;color:#6A9955'>GB</span></p>
+
+<p style='margin:0in;font-family:Consolas;font-size:10.5pt'><span
+style='color:#979797'>&nbsp; &nbsp; allocated_memory_gb = allocated_memory / (</span><span
+style='color:#899C7F'>1024</span><span style='color:#979797'> ** </span><span
+style='color:#899C7F'>3</span><span style='color:#979797'>)</span></p>
+
+<p style='margin:0in;font-family:Consolas;font-size:10.5pt'><span
+style='color:#979797'>&nbsp; &nbsp; </span><span style='color:#989875'>print</span><span
+style='color:#979797'>(</span><span style='color:#569CD6'>f</span><span
+style='color:#CB8F76'>&quot;Allocated GPU memory: </span><span
+style='color:#569CD6'>{</span><span style='color:#979797'>allocated_memory_gb</span><span
+style='color:#569CD6'>:.2f}</span><span style='color:#CB8F76'> GB&quot;</span><span
+style='color:#979797'>)</span></p>
+
+<p style='margin:0in;font-size:10.5pt'><span style='font-family:Consolas;
+color:#979797'>&nbsp; &nbsp; </span><span style='font-family:Consolas;
+color:#6A9955'># </span><span style='font-family:"Microsoft YaHei";color:#6A9955'>获取当前</span><span
+style='font-family:Consolas;color:#6A9955'>GPU</span><span style='font-family:
+"Microsoft YaHei";color:#6A9955'>的缓存显存大小（以字节为单位）</span></p>
+
+<p style='margin:0in;font-family:Consolas;font-size:10.5pt'><span
+style='color:#979797'>&nbsp; &nbsp; cached_memory = torch.cuda.memory_reserved(</span><span
+style='color:#899C7F'>0</span><span style='color:#979797'>)</span></p>
+
+<p style='margin:0in;font-size:10.5pt'><span style='font-family:Consolas;
+color:#979797'>&nbsp; &nbsp; </span><span style='font-family:Consolas;
+color:#6A9955'># </span><span style='font-family:"Microsoft YaHei";color:#6A9955'>将字节转换为</span><span
+style='font-family:Consolas;color:#6A9955'>GB</span></p>
+
+<p style='margin:0in;font-family:Consolas;font-size:10.5pt'><span
+style='color:#979797'>&nbsp; &nbsp; cached_memory_gb = cached_memory / (</span><span
+style='color:#899C7F'>1024</span><span style='color:#979797'> ** </span><span
+style='color:#899C7F'>3</span><span style='color:#979797'>)</span></p>
+
+<p style='margin:0in;font-family:Consolas;font-size:10.5pt'><span
+style='color:#979797'>&nbsp; &nbsp; </span><span style='color:#989875'>print</span><span
+style='color:#979797'>(</span><span style='color:#569CD6'>f</span><span
+style='color:#CB8F76'>&quot;Cached GPU memory: </span><span style='color:#569CD6'>{</span><span
+style='color:#979797'>cached_memory_gb</span><span style='color:#569CD6'>:.2f}</span><span
+style='color:#CB8F76'> GB&quot;</span><span style='color:#979797'>)</span></p>
+
+<p style='margin:0in;font-family:Consolas;font-size:10.5pt'><span
+style='color:#C586C0'>else</span><span style='color:#979797'>:</span></p>
+
+<p style='margin:0in;font-family:Consolas;font-size:10.5pt'><span
+style='color:#979797'>&nbsp; &nbsp; </span><span style='color:#989875'>print</span><span
+style='color:#979797'>(</span><span style='color:#CB8F76'>&quot;CUDA is not
+available. Using CPU instead.&quot;</span><span style='color:#979797'>)</span></p>
+
+<p style='margin:0in;font-family:"Microsoft YaHei";font-size:14.0pt'>&nbsp;</p>
+
+<p style='margin:0in'><img src="zluda安装和使用教程.files/image009.png" width=835
+height=797></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:14.0pt' lang=en-US>&nbsp;</p>
+
+<h2 style='margin:0in;font-size:18.0pt;color:#2E75B5'><span style='font-family:
+"Segoe UI"' lang=en-US>5</span><span style='font-family:微软雅黑' lang=zh-CN>、后记：</span></h2>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:14.0pt'><span lang=en-US><span
+style='mso-spacerun:yes'>    </span></span><span lang=zh-CN>需要注意的是，如果你在上面安装了不受支持的pytorch版本(如2.5.1)，尽管这里torch.cuda.is_available()返回的是True，甚至你创建两个张量移动到GPU上相加并打印都完全没有问题，但是当你实际运行神经网络(如最基本的ResNet18)的时候依然会报CUDA错误，（</span><span
+lang=en-US>eg.</span><span lang=zh-CN>CUDA error: CUBLAS_STATUS_NOT_SUPPORTED</span><span
+lang=en-US> </span><span lang=zh-CN>）</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:14.0pt'><span lang=en-US><span
+style='mso-spacerun:yes'>    </span></span><span lang=zh-CN>该错误主要出现在linear线性层进行计算的时候，具体原因未知，但至少正确版本的pytorch能保证不出现该错误。</span></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:14.0pt'><span lang=en-US><span
+style='mso-spacerun:yes'>    </span></span><span lang=zh-CN>另外，在通过Zluda运行一个新的torch网络的时候，其需要编译PTX模块，这个过程需要耗费</span><span
+style='font-weight:bold;color:#FA0000' lang=zh-CN>十几分钟到一个小时</span><span
+lang=zh-CN>不等，期间终端不会有任何输出，请耐心等待，第二次及之后运行则不需要此过程。</span></p>
+
+<p style='margin:0in;font-family:"Segoe UI";font-size:14.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:"Segoe UI";font-size:14.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:"Segoe UI";font-size:14.0pt'>&nbsp;</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div>
+
+<p style='margin:0in'>&nbsp;</p>
+
+<p style='text-align:left;margin:0in;font-family:Arial;font-size:9pt;
+color:#969696;direction:ltr'>已使用 OneNote 创建。</p>
+
+</div>
+
+</body>
+
+</html>
