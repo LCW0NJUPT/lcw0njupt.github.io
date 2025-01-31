@@ -1,0 +1,130 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+<meta name=ProgId content=OneNote.File>
+<meta name=Generator content="Microsoft OneNote 15">
+<link id=Main-File rel=Main-File href=BE7000-docker.htm>
+<link rel=File-List href="BE7000-docker.files/filelist.xml">
+</head>
+
+<body lang=zh-CN style='font-family:"Segoe UI";font-size:14.0pt'>
+
+<div style='direction:ltr;border-width:100%'>
+
+<div style='direction:ltr;margin-top:0in;margin-left:0in;width:11.9701in'>
+
+<div style='direction:ltr;margin-top:0in;margin-left:.0215in;width:2.5597in'>
+
+<p style='margin:0in;font-family:"Microsoft YaHei";font-size:20.0pt'
+lang=en-US>BE7000-docker</p>
+
+</div>
+
+<div style='direction:ltr;margin-top:.0388in;margin-left:.0215in;width:1.5625in'>
+
+<p style='margin:0in;font-size:10.0pt;color:#767676'><span style='font-family:
+Calibri'>2025</span><span style='font-family:"Microsoft YaHei"'>年</span><span
+style='font-family:Calibri'>2</span><span style='font-family:"Microsoft YaHei"'>月</span><span
+style='font-family:Calibri'>1</span><span style='font-family:"Microsoft YaHei"'>日</span></p>
+
+<p style='margin:0in;font-family:Calibri;font-size:10.0pt;color:#767676'>1:44</p>
+
+</div>
+
+<div style='direction:ltr;margin-top:.334in;margin-left:0in;width:11.9701in'>
+
+<p style='margin:0in;font-family:"Microsoft YaHei";font-size:20.0pt'><span
+lang=zh-CN>小米路由器</span><span lang=en-US>docker</span><span lang=zh-CN>怎么使用，换源方法</span></p>
+
+<p style='margin:0in;font-family:"Segoe UI";font-size:14.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:14.0pt'><span lang=zh-CN>1、ssh登录路由器，插入</span><span
+lang=en-US>64G</span><span lang=zh-CN>以上存储设备，安装</span><span lang=en-US>docker</span><span
+lang=zh-CN>，安装第三方管理（</span><span lang=en-US>simple-docker</span><span
+lang=zh-CN>）</span></p>
+
+<p style='margin:0in'><img src="BE7000-docker.files/image001.png" width=1069
+height=532></p>
+
+<p style='margin:0in;font-family:微软雅黑;font-size:14.0pt'><span lang=en-US>2</span><span
+lang=zh-CN>、修改/tmp/dockerd/daemon.json如下</span></p>
+
+<p style='margin:0in;font-family:"Microsoft YaHei";font-size:14.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:"Segoe UI";font-size:14.0pt'>&quot;registry-mirrors&quot;:
+[ &quot;https:\/\/docker.1ms.run&quot;,
+&quot;https:\/\/docker.xuanyuan.me&quot;,
+&quot;https:\/\/docker.xiaoqi.online&quot;,
+&quot;https:\/\/docker.zhai.cm&quot;, &quot;https:\/\/hub.rat.dev&quot; ],</p>
+
+<p style='margin:0in;font-family:"Microsoft YaHei";font-size:14.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-size:14.0pt'><span style='font-weight:bold;
+font-style:italic;font-family:"Microsoft YaHei"' lang=zh-CN>注意这里的镜像站时刻会变会挂，以上截至</span><span
+style='font-weight:bold;font-style:italic;font-family:"Segoe UI"' lang=en-US>2025.2.1</span><span
+style='font-weight:bold;font-style:italic;font-family:"Microsoft YaHei"'
+lang=zh-CN>尚能使用</span></p>
+
+<p style='margin:0in;font-family:"Microsoft YaHei";font-size:14.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-family:"Segoe UI";font-size:14.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-size:14.0pt'><span style='font-family:"Segoe UI"'
+lang=en-US>3</span><span style='font-family:微软雅黑' lang=zh-CN>、 ps | grep
+dockerd</span><span style='font-family:微软雅黑' lang=en-US> </span><span
+style='font-family:微软雅黑' lang=zh-CN>查看进程</span></p>
+
+<p style='margin:0in'><img src="BE7000-docker.files/image002.png" width=954
+height=52></p>
+
+<p style='margin:0in;font-family:"Microsoft YaHei";font-size:14.0pt'><span
+lang=en-US>kill</span><span lang=zh-CN>了有</span><span lang=en-US>json</span><span
+lang=zh-CN>的那条的进程号</span></p>
+
+<p style='margin:0in;font-family:"Microsoft YaHei";font-size:14.0pt'
+lang=en-US>kill -9 18926</p>
+
+<p style='margin:0in;font-family:"Microsoft YaHei";font-size:14.0pt'><span
+lang=zh-CN>等待进程重启，此时已经可以正常</span><span lang=en-US>pull docker</span><span
+lang=zh-CN>镜像了</span></p>
+
+<p style='margin:0in;font-family:"Segoe UI";font-size:14.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-size:14.0pt'><span style='font-family:"Segoe UI"'
+lang=en-US>4</span><span style='font-family:微软雅黑' lang=zh-CN>、正常</span><span
+style='font-family:微软雅黑' lang=en-US>pull</span><span style='font-family:微软雅黑'
+lang=zh-CN>都问题不大了</span></p>
+
+<p style='margin:0in'><img src="BE7000-docker.files/image003.png" width=1145
+height=346></p>
+
+<p style='margin:0in;font-family:"Segoe UI";font-size:14.0pt'>&nbsp;</p>
+
+<p style='margin:0in;font-size:14.0pt'><span style='font-family:"Segoe UI"'
+lang=en-US>5</span><span style='font-family:微软雅黑' lang=zh-CN>、使用方法</span></p>
+
+<p style='margin:0in;font-family:"Microsoft YaHei";font-size:14.0pt'>这个不好用，以后再写了</p>
+
+<p style='margin:0in;font-family:"Segoe UI";font-size:14.0pt'>&nbsp;</p>
+
+</div>
+
+</div>
+
+</div>
+
+<div>
+
+<p style='margin:0in'>&nbsp;</p>
+
+<p style='text-align:left;margin:0in;font-family:Arial;font-size:9pt;
+color:#969696;direction:ltr'>已使用 OneNote 创建。</p>
+
+</div>
+
+</body>
+
+</html>
