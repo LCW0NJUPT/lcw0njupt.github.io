@@ -124,3 +124,45 @@ h3 {
     font-weight: bold;
     color: #444;
 }
+
+/* 为超链接添加相对定位，以便工具提示框能相对于它定位 */
+.tooltip-link {
+    position: relative;
+    display: inline-block;
+}
+
+/* 初始状态下隐藏工具提示框 */
+.tooltip-text {
+    visibility: hidden;
+    width: 180px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%; /* 位于超链接上方 */
+    left: 50%;
+    margin-left: -90px; /* 水平居中 */
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+/* 显示工具提示框时添加箭头 */
+.tooltip-text::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #333 transparent transparent transparent;
+}
+
+/* 鼠标悬停在超链接上时显示工具提示框 */
+.tooltip-link:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
