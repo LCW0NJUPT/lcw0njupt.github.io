@@ -70,7 +70,8 @@ h3 {
 
 /* 新增的背景样式 */
 .bg-calculator {
-    background-image: url('./assets/pic_calculator.webp');
+    /* background-image: url('./assets/pic_calculator.webp'); */
+    background-image: url('https://jsd.cdn.zzko.cn/gh/LCW0NJUPT/lcw0njupt.github.io/calculator/assets/pic_calculator.webp');
     background-size: cover;
     background-position: center;
     height: 100%;
