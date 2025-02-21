@@ -4,23 +4,12 @@
 
     <title>安徽电信战新产品运营中心DeepSeek推理算力部署计算器</title>
     <link rel="stylesheet" href="./style.css">
-    <link rel="icon" href="./logo.png" type="image/png">
+    <link rel="icon" href="./assets/logo.webp" type="image/webp">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <style>
-        /* 新增的背景样式 */
-        .bg-calculator {
-            background-image: url('pic_calculator.png');
-            background-size: cover;
-            background-position: center;
-            height: 100%;
-            position: relative;
-        }
-    </style>
 </head>
 <body class="bg-calculator">
     <div class="container">
         <h1>安徽电信战新产品运营中心</br>DeepSeek推理算力部署计算器</h1>
-        <h3>-- lcw 2025.2.21</h3>
         <div class="input-section">
             <label for="model-type">模型类型:</label>
             <select id="model-type">
@@ -105,9 +94,18 @@
         <div id="results" class="results-section">
             <!-- 计算结果将显示在这里 -->
         </div>
+        <div class="footer-info">
+            <!-- <div id="busuanzi_value_site_uv">页面访问次数: <span id="busuanzi_value_site_uv"></span>人次</div> -->
+            <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+            <div>-- lcw 2025.2.21</div>
+        </div>
+    
+        <script src="./script.js"></script>
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     </div>
 
-    <script src="./script.js
-    "></script>
 
-</body></html>
+
+</body>
+
+</html>
