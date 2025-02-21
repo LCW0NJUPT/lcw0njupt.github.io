@@ -1,0 +1,73 @@
+/* style.css 内容，与之前版本相同 */
+.container {
+    width: 80%;
+    margin: 20px auto;
+    font-family: sans-serif;
+}
+
+.title-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; 
+}
+h1 {
+    font-size: 2em; 
+    text-align: center;
+}
+
+h3 {
+    text-align: right;
+}
+
+.input-section {
+    margin-bottom: 15px;
+}
+
+.input-section label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.input-section select, .input-section input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* 确保内边距不增加元素宽度 */
+}
+
+#calculate-button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#calculate-button:hover {
+    background-color: #45a049;
+}
+
+.results-section {
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+}
+
+.results-section h2 {
+    margin-top: 0;
+}
+
+.result-item {
+    margin-bottom: 8px;
+}
+
+.result-item strong {
+    font-weight: bold;
+}
