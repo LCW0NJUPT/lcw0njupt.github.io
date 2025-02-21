@@ -1,102 +1,80 @@
 <!DOCTYPE html>
 <!-- 安徽电信省战新产品运营中心 智算团队 lcw 20250221 -->
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html lang="zh-CN">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>安徽电信战新产品运营中心DeepSeek推理算力部署计算器</title>
-    <link rel="stylesheet" href="./style.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <style>
+        /* 将 body 和 html 的高度和宽度设置为 100% */
+        body,
+        html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 将图片作为背景并铺满整个页面 */
+        .bg-image {
+            background-image: url('pic_login.png');
+            background-size: cover;
+            background-position: center;
+            height: 100%;
+            position: relative;
+        }
+
+        /* 标题和按钮的容器，使用绝对定位使其位于图片上 */
+        .content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white; 
+            width: 95%; 
+            margin: 20px auto;
+        }
+
+        h1 {
+            font-size: 36px;
+            /* 下移100px */
+            margin-bottom: 100px; 
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 200px; /* 设置按钮宽度 */
+            height: 50px; /* 设置按钮高度 */
+            font-size: 23px; /* 增大文字大小 */
+            margin-top: 50px; /* 新增属性，下移按钮，可根据需要调整值 */
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
 </head>
+
 <body>
-    <div class="container">
-        <h1>安徽电信战新产品运营中心</br>DeepSeek推理算力部署计算器</h1>
-        <h3>-- lcw 2025.2.21</h3>
-        <div class="input-section">
-            <label for="model-type">模型类型:</label>
-            <select id="model-type">
-                <option value="r1_671b">DeepSeek R1/V3 671B</option>
-                <option value="r1_1.5b">DeepSeek R1 1.5B (蒸馏)</option>
-                <option value="r1_7b">DeepSeek R1 7B (蒸馏)</option>
-                <option value="r1_8b">DeepSeek R1 8B (蒸馏)</option>
-                <option value="r1_14b">DeepSeek R1 14B (蒸馏)</option>
-                <option value="r1_32b">DeepSeek R1 32B (蒸馏)</option>
-                <option value="r1_70b">DeepSeek R1 70B (蒸馏)</option>
-            </select>
-        </div>
-
-        <div class="input-section">
-            <label for="precision">参数精度:</label>
-            <select id="precision">
-                <option value="fp16">FP16</option>
-                <option value="fp8">FP8</option>
-                <option value="bf16">BF16</option>
-                <option value="int8">INT8</option>
-                <option value="int4">INT4</option>
-            </select>
-        </div>
-
-        <div class="input-section">
-            <label for="concurrency">并发数:</label>
-            <input type="number" id="concurrency" value="1" min="1">
-        </div>
-
-        <div class="input-section">
-            <label for="context-length">上下文长度 (Token数):</label>
-            <select id="context-length">
-                <option value="4096">4K (4096)</option>
-                <option value="8192" selected="">8K (8192)</option>
-                <option value="32768">32K (32768)</option>
-                <option value="65536">64K (65536)</option>
-            </select>
-        </div>
-
-        <div class="input-section">
-            <label for="framework">推理框架 (影响性能，显存管理):</label>
-            <select id="framework">
-                <option value="auto">自动/通用 (简化估算)</option>
-                <option value="vllm">vLLM (高性能)</option>
-                <option value="llama_cpp">llama.cpp (CPU/GPU混合)</option>
-                <option value="mindspore">MindSpore (华为昇腾)</option>
-                <!-- 可以根据实际情况添加更多框架 -->
-            </select>
-        </div>
-
-        <div class="input-section">
-            <label for="fine-tuning-method">微调方法:</label>
-            <select id="fine-tuning-method">
-                <option value="inference">推理 (Inference)</option>
-                <option value="lora">LoRA 微调</option>
-                <!-- 未来可以添加 "全参数微调" 等选项，如果用户提供公式 -->
-            </select>
-        </div>
-
-        <div class="input-section" id="lora-params-section" style="display: none;">
-            <label for="lora-trainable-params">LoRA 可训练参数 (Billion):</label>
-            <input type="number" id="lora-trainable-params" value="0" min="0" step="0.1">
-        </div>
-
-        <div class="input-section">
-            <label for="hardware">算力卡:</label>
-            <select id="hardware">
-                <option value="ascend910b">华为昇腾910b</option>
-                <option value="nvidia_h20">NVIDIA H20</option>
-                <option value="nvidia_h800">NVIDIA H800</option>
-                <option value="nvidia_a800">NVIDIA A800</option>
-                <option value="nvidia_l40s">NVIDIA L40S</option>
-                <option value="nvidia_a10">NVIDIA A10</option>
-                <option value="nvidia_rtx4090">NVIDIA RTX 4090</option>
-                <option value="nvidia_a100_40g">NVIDIA A100-40G</option>
-
-            </select>
-        </div>
-
-        <button id="calculate-button">计算算力需求</button>
-
-        <div id="results" class="results-section">
-            <!-- 计算结果将显示在这里 -->
+    <div class="bg-image">
+        <div class="content">
+            <h1>安徽电信战新产品运营中心</br>DeepSeek推理算力部署计算器</h1>
+            <button onclick="goToCalculator()">进入</button>
         </div>
     </div>
 
-    <script src="./script.js
-    "></script>
+    <script>
+        function goToCalculator() {
+            window.location.href = './backCalculator.html';
+        }
+    </script>
+</body>
 
-</body></html>
+</html>
