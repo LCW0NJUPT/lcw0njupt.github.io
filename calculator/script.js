@@ -1,10 +1,12 @@
+// 事件监听器
 document.addEventListener('DOMContentLoaded', function() {
+    // 初始化选择器和事件监听器
     const fineTuningMethodSelect = document.getElementById('fine-tuning-method');
     const loraParamsSection = document.getElementById('lora-params-section');
     const precisionSelect = document.getElementById('precision');
     const hardwareSelect = document.getElementById('hardware');
     const allHardwareOptions = Array.from(hardwareSelect.options);
-
+    // 动态显示LoRA参数
     fineTuningMethodSelect.addEventListener('change', function() {
         if (fineTuningMethodSelect.value === 'lora') {
             loraParamsSection.style.display = 'block';
@@ -12,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
             loraParamsSection.style.display = 'none';
         }
     });
-
+    // 精度选择影响硬件选项
     precisionSelect.addEventListener('change', function() {
         const selectedPrecision = precisionSelect.value;
         hardwareSelect.innerHTML = '';
@@ -20,6 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (selectedPrecision === 'fp8') {
             hardwareSelect.add(allHardwareOptions.find(option => option.value === 'nvidia_h20').cloneNode(true));
             hardwareSelect.add(allHardwareOptions.find(option => option.value === 'nvidia_h800').cloneNode(true));
+            hardwareSelect.add(allHardwareOptions.find(option => option.value === 'nvidia_l40s').cloneNode(true));
         } else {
             allHardwareOptions.forEach(option => {
                 hardwareSelect.add(option.cloneNode(true));
@@ -28,8 +31,9 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-
+// 计算按钮点击事件
 document.getElementById('calculate-button').addEventListener('click', function() {
+    // 获取用户输入的参数
     const modelType = document.getElementById('model-type').value;
     const precision = document.getElementById('precision').value;
     const concurrency = parseInt(document.getElementById('concurrency').value);
@@ -41,7 +45,7 @@ document.getElementById('calculate-button').addEventListener('click', function()
 
     const resultsDiv = document.getElementById('results');
     resultsDiv.innerHTML = '<h2>计算结果:</h2>';
-
+    // 调用计算函数并显示结果
     const calculationResults = calculateRequirements(modelType, precision, concurrency, contextLength, framework, fineTuningMethod, loraTrainableParams, hardware);
 
     if (calculationResults) {
@@ -72,7 +76,7 @@ document.getElementById('calculate-button').addEventListener('click', function()
             <div class="result-item"><strong>总显存需求: </strong> <strong>${calculationResults.memory}</strong></div>
             ${hardwareRecommendationHTML}
             <div class="result-item"><strong>预估算力需求:</strong> ${calculationResults.compute}</div>
-            <div class="result-item"><strong>预估算力机台数:</strong> <strong>${calculationResults.machine_count} 台</strong></div>
+            <div class="result-item"><strong>每机8卡时预估算力机台数:</strong> <strong>${calculationResults.machine_count} 台</strong></div>
             <div class="result-item"><strong>部署建议:</strong> ${calculationResults.deployment_recommendation}</div>
             <div class="result-item"><strong>建议:</strong> ${calculationResults.recommendation}</div>
             <p class="result-item" style="font-size: smaller; color: gray;">* 显存和算力均为估算值，实际情况可能因多种因素而异。</p>
@@ -88,6 +92,7 @@ document.getElementById('calculate-button').addEventListener('click', function()
 });
 
 
+//计算资源需求
 function calculateRequirements(modelType, precision, concurrency, contextLength, framework, fineTuningMethod = 'inference', loraTrainableParamsBillion = 0, hardware) {
     let estimatedMemoryGB = 0;
     let computeLoad = "中等";
@@ -164,14 +169,17 @@ function calculateRequirements(modelType, precision, concurrency, contextLength,
 
     const hardwareMemoryGB = {
         'nvidia_a10': 24,
-        'nvidia_a100': 80,
+        'nvidia_a100_80g': 80,
         'nvidia_a100_40g': 40,
         'nvidia_a800': 80,
         'nvidia_h20': 96,
         'nvidia_h800': 80,
         'nvidia_l40s': 48,
         'nvidia_rtx4090': 24,
-        'ascend910b': 56
+        'ascend910b': 64,
+        'Atlas300IPro': 24,
+        'Atlas300IDuo_48': 48,
+        'Atlas300IDuo_96': 96
     };
 
     hardwareRecommendation = calculateHardwareCount(estimatedMemoryGB, hardwareMemoryGB, hardware);
@@ -199,8 +207,11 @@ function calculateRequirements(modelType, precision, concurrency, contextLength,
     let hardwareComputeFactor = 1;
     switch (hardware) {
         case 'ascend910b': hardwareComputeFactor = 0.8; computeLoad = adjustComputeLoad(computeLoad, 0.8); recommendation += " 昇腾910b 性能可能略低于同级别N卡。"; break;
+        case 'Atlas300IPro': hardwareComputeFactor = 0.3; computeLoad = adjustComputeLoad(computeLoad, 0.6); recommendation += " Atlas300IPro 性能相对很低，适合小型模型。"; break;
+        case 'Atlas300IDuo_48': hardwareComputeFactor = 0.6; computeLoad = adjustComputeLoad(computeLoad, 0.6); recommendation += " Atlas300IDuo-48GB性能相对较低，适合中小型模型。"; break;
+        case 'Atlas300IDuo_96': hardwareComputeFactor = 0.6; computeLoad = adjustComputeLoad(computeLoad, 0.6); recommendation += " Atlas300IDuo-96GB性能相对较低，适合中小型模型。"; break;
         case 'nvidia_a10': hardwareComputeFactor = 0.6; computeLoad = adjustComputeLoad(computeLoad, 0.6); recommendation += " A10 性能相对较低，适合中小型模型。"; break;
-        case 'nvidia_a100': hardwareComputeFactor = 1.2; computeLoad = adjustComputeLoad(computeLoad, 1.2); break;
+        case 'nvidia_a100_80g': hardwareComputeFactor = 1.2; computeLoad = adjustComputeLoad(computeLoad, 1.2); break;
         case 'nvidia_a100_40g': hardwareComputeFactor = 1.1; computeLoad = adjustComputeLoad(computeLoad, 1.1); recommendation += " A100-40G 性能略低于 A100-80G。"; break;
         case 'nvidia_a800': hardwareComputeFactor = 1.1; computeLoad = adjustComputeLoad(computeLoad, 1.1); break;
         case 'nvidia_h20': hardwareComputeFactor = 1.3; computeLoad = adjustComputeLoad(computeLoad, 1.3); break;
@@ -306,8 +317,12 @@ function getHardwareDisplayName(hardware) {
         'nvidia_l40s': 'NVIDIA L40S',
         'nvidia_a10': 'NVIDIA A10',
         'nvidia_rtx4090': 'NVIDIA RTX 4090',
+        'nvidia_a100_80g': 'NVIDIA A100-80G',
         'nvidia_a100_40g': 'NVIDIA A100-40G',
-        'ascend910b': '华为昇腾910b'
+        'ascend910b': '华为昇腾910B',
+        'Atlas300IPro': '华为昇腾300IPro',
+        'Atlas300IDuo_48': '华为昇腾300IDuo 48G',
+        'Atlas300IDuo_96': '华为昇腾300IDuo 96G'
     };
     return hardwareDisplayNames[hardware] || hardware;
 }
