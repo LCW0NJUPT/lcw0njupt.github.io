@@ -23,6 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
             hardwareSelect.add(allHardwareOptions.find(option => option.value === 'nvidia_h20').cloneNode(true));
             hardwareSelect.add(allHardwareOptions.find(option => option.value === 'nvidia_h800').cloneNode(true));
             hardwareSelect.add(allHardwareOptions.find(option => option.value === 'nvidia_l40s').cloneNode(true));
+            hardwareSelect.add(allHardwareOptions.find(option => option.value === 'nvidia_rtx4090').cloneNode(true));
         } else {
             allHardwareOptions.forEach(option => {
                 hardwareSelect.add(option.cloneNode(true));
