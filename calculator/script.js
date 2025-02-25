@@ -140,25 +140,45 @@ function calculateRequirements(modelType, precision, concurrency, contextLength,
     const dtype_bytes = n_dtype_bytes[precision];
 
 
-    const token_num = contextLength;
+    // const token_num = contextLength;
 
 
     // 1. 模型权重内存 (直接从常量读取)
     model_weights_memory_gb = modelSizesGB[modelType][precision];
 
 
-    // 2. KV Cache 内存
+    // 2. KV Cache 内存 - 基于理论模型的计算
     let kvCacheSizeBytes = 0;
-    if (model_config.moe) { // MoE 模型 (R1 671B)
-        kvCacheSizeBytes = concurrency * contextLength * model_config.layers * 2 * model_config.kv_compress_dim * dtype_bytes;
-    } else { // 标准 Transformer 模型 (蒸馏模型)
-        kvCacheSizeBytes = concurrency * model_config.layers * 2 * contextLength * model_config.kv_heads * model_config.head_dim * dtype_bytes;
+    if (model_config.moe) {
+        // MoE 模型（R1 671B）- 使用压缩维度
+        // kv_compress_dim是一个优化参数，使得KV缓存比标准Transformer更小
+        // 增加可读性
+        const bytes_per_token = 2 * model_config.kv_compress_dim * dtype_bytes; // 2表示K和V
+        kvCacheSizeBytes = concurrency * contextLength * model_config.layers * bytes_per_token;
+    } else { 
+        // 标准 Transformer 模型 (蒸馏模型) - 使用标准公式
+        // 每个注意力头的KV缓存大小 = 2(K和V) * 头维度 * 数据类型字节数
+        const head_kv_bytes = 2 * model_config.head_dim * dtype_bytes;
+        // 每层的KV缓存 = 头数 * 每个头的KV缓存
+        const layer_kv_bytes = model_config.kv_heads * head_kv_bytes;
+        // 总KV缓存 = 并发数 * 上下文长度 * 模型层数 * 每层KV缓存
+        kvCacheSizeBytes = concurrency * contextLength * model_config.layers * layer_kv_bytes;
     }
+    // GB
     kv_cache_memory_gb = kvCacheSizeBytes / (1024 * 1024 * 1024);
 
 
-    // 3. 激活内存
-    const activationSizeBytes = concurrency * contextLength * model_config.layers * model_config.hidden_dim * dtype_bytes;
+    // 3. 激活内存 - 基于理论模型的计算
+    // 激活内存与模型的复杂度和并发数成正比
+    // 每个token的激活内存大小与hidden_dim相关
+    const tokens_activation_bytes = model_config.hidden_dim * dtype_bytes;
+    // 标准的激活内存估算 - 一个简化模型
+    // 使用一个系数来表示平均每层每token的激活空间需求相对于hidden_dim的比例
+    const activation_ratio = model_config.moe ? 0.05 : 0.1; // MoE模型激活内存相对较小
+    // 总激活内存 = 并发数 * 上下文长度 * 模型层数 * 每token激活内存 * 系数
+    const activationSizeBytes = concurrency * contextLength * model_config.layers * tokens_activation_bytes * activation_ratio;
+
+    // GB
     activation_memory_gb = activationSizeBytes / (1024 * 1024 * 1024);
 
 
