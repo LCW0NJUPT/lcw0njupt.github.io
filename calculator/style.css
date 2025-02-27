@@ -20,7 +20,7 @@
     justify-content: center;
     align-items: center;
     height: auto; /* 修改高度为自动，避免固定高度带来的问题 */
-    margin-bottom: 20px;
+    /* margin-bottom: auto; */
 }
 
 /* 标题样式 */
@@ -32,11 +32,11 @@ h1 {
 
 /* 副标题样式 */
 h3 {
-    text-align: right;
+    text-align: center;
     color: #666;
-    font-size: 16px;
-    /* margin-top: -20px;
-    margin-bottom: -15px; */
+    font-size: 14px;
+    margin-top: -20px;
+    margin-bottom: -15px;
 }
 
 /* 输入区域样式 */
