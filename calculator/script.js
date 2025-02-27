@@ -154,7 +154,7 @@ function calculateRequirements(modelType, precision, concurrency, contextLength,
         // kv_compress_dim是一个优化参数，使得KV缓存比标准Transformer更小
         // 增加可读性
         const bytes_per_token = 2 * model_config.kv_compress_dim * dtype_bytes; // 2表示K和V
-        kvCacheSizeBytes = concurrency * contextLength * model_config.layers * bytes_per_token;
+        kvCacheSizeBytes = concurrency * contextLength * model_config.layers * bytes_per_token*0.1; //0.1强行优化，待后续曲线拟合
     } else { 
         // 标准 Transformer 模型 (蒸馏模型) - 使用标准公式
         // 每个注意力头的KV缓存大小 = 2(K和V) * 头维度 * 数据类型字节数
@@ -162,7 +162,7 @@ function calculateRequirements(modelType, precision, concurrency, contextLength,
         // 每层的KV缓存 = 头数 * 每个头的KV缓存
         const layer_kv_bytes = model_config.kv_heads * head_kv_bytes;
         // 总KV缓存 = 并发数 * 上下文长度 * 模型层数 * 每层KV缓存
-        kvCacheSizeBytes = concurrency * contextLength * model_config.layers * layer_kv_bytes;
+        kvCacheSizeBytes = concurrency * contextLength * model_config.layers * layer_kv_bytes*0.1; //0.1强行优化，待后续曲线拟合
     }
     // GB
     kv_cache_memory_gb = kvCacheSizeBytes / (1024 * 1024 * 1024);
