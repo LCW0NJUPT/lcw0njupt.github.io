@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (selectedPrecision === 'fp8') {
             hardwareSelect.add(allHardwareOptions.find(option => option.value === 'nvidia_h20').cloneNode(true));
+            hardwareSelect.add(allHardwareOptions.find(option => option.value === 'nvidia_l20').cloneNode(true));
             hardwareSelect.add(allHardwareOptions.find(option => option.value === 'nvidia_h800').cloneNode(true));
             hardwareSelect.add(allHardwareOptions.find(option => option.value === 'nvidia_l40s').cloneNode(true));
             hardwareSelect.add(allHardwareOptions.find(option => option.value === 'nvidia_rtx4090').cloneNode(true));
@@ -195,6 +196,7 @@ function calculateRequirements(modelType, precision, concurrency, contextLength,
         'nvidia_a800': 80,
         'nvidia_h20': 96,
         'nvidia_h800': 80,
+        'nvidia_l20': 48,
         'nvidia_l40s': 48,
         'nvidia_rtx4090': 24,
         'ascend910b': 64,
@@ -239,6 +241,7 @@ function calculateRequirements(modelType, precision, concurrency, contextLength,
         case 'nvidia_h800': hardwareComputeFactor = 1.5; computeLoad = adjustComputeLoad(computeLoad, 1.5); computeLoad = "非常高"; recommendation = " H800/H20 是高性能卡，适合大型模型。"; break;
         case 'nvidia_rtx4090': hardwareComputeFactor = 0.9; computeLoad = adjustComputeLoad(computeLoad, 0.9); recommendation += " RTX 4090 消费级卡，性价比高，但显存可能受限。"; break;
         case 'nvidia_l40s': hardwareComputeFactor = 1.0; computeLoad = adjustComputeLoad(computeLoad, 1.0); break;
+        case 'nvidia_l20': hardwareComputeFactor = 1.3; computeLoad = adjustComputeLoad(computeLoad, 1.0); break;
     }
     computeLoad = adjustComputeLoad(computeLoad, hardwareComputeFactor);
 
@@ -337,6 +340,7 @@ function getHardwareDisplayName(hardware) {
         'nvidia_a800': 'NVIDIA A800',
         'nvidia_l40s': 'NVIDIA L40S',
         'nvidia_a10': 'NVIDIA A10',
+        'nvidia_l20': 'NVIDIA L20',
         'nvidia_rtx4090': 'NVIDIA RTX 4090',
         'nvidia_a100_80g': 'NVIDIA A100-80G',
         'nvidia_a100_40g': 'NVIDIA A100-40G',
