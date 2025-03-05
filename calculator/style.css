@@ -76,6 +76,7 @@ h3 {
     background-position: center;
     height: 100%;
     position: relative;
+    background-attachment: fixed; /* 新增属性，固定背景图片 */
 }
 
 /* 新增样式，用于并排显示 */
