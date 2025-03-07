@@ -1,5 +1,4 @@
-#  欢迎来到 LCW 的Github Pages！[![GitHub Stars](https://img.shields.io/github/stars/LCW0NJUPT/lcw0njupt.github.io.svg?style=social)](https://github.com/LCW0NJUPT/lcw0njupt.github.io/stargazers)
-
+# 欢迎来到 LCW 的Github Pages！[![GitHub Stars](https://img.shields.io/github/stars/LCW0NJUPT/lcw0njupt.github.io.svg?style=social)](https://github.com/LCW0NJUPT/lcw0njupt.github.io/stargazers)
 
 ## 1、windows下用于AMD显卡转译cuda的zluda怎么安装，如何配置zluda+pytorch环境并验证
 
@@ -12,6 +11,6 @@ http://lcw0njupt.github.io/BE7000-docker/BE7000-docker.htm
 
 ## 3、DeepSeek算力需求计算器
 
-https://lcw0njupt.github.io/calculator/dscalculator.html  
+https://lcw0njupt.github.io/LLMcalculator/index.html
 
 [![Star History](https://api.star-history.com/svg?repos=LCW0NJUPT/lcw0njupt.github.io&type=Date)](https://github.com/LCW0NJUPT/lcw0njupt.github.io/stargazers)
